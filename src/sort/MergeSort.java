@@ -22,6 +22,7 @@ public class MergeSort implements Sort{
     private <T extends Comparable<T>> void merge(T[] arr, T[] left, T[] right){
         int L = left.length, R = right.length;
         int i = 0, j = 0, k = 0;
+
         while(i < L && j < R){
             if(left[i].compareTo(right[j]) < 0){
                 arr[k++] = left[i++];

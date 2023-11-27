@@ -2,41 +2,30 @@ package sort;
 
 import java.util.Arrays;
 
+import static sort.SortUtils.swap;
+
 public class QuickSort implements Sort{
 
 
     @Override
     public <T extends Comparable<T>> T[] sort(T[] arr) {
-        int n = arr.length;
-        if(n <= 1) return arr;
-
-        T[] left  = Arrays.copyOfRange(arr,0, n/2);
-        T[] right = Arrays.copyOfRange(arr,n/2, n);
-
-        left  = sort(left);
-        right = sort(right);
-
-        merge(arr, left, right);
-
+        int pivot = arr.length-1;
+        sort1(arr, 0, pivot);
         return arr;
     }
-     private <T extends Comparable<T>> void merge(T[] arr, T[] left, T[] right){
-        int L = left.length, R = right.length;
-        int i = 0, j = 0, k = 0;
-        while(i < L && j < R){
-            if(left[i].compareTo(right[j]) < 0){
-                arr[k++] = left[i++];
-            }else {
-                arr[k++] = right[j++];
+     private <T extends Comparable<T>> void sort1(T[] arr, int start, int end){
+        if( start >= end ) return;
+        int i = start - 1;
+        int pivot = (int) (start + Math.random() * (end - start + 1));
+        swap(arr, pivot, end);
+        for(int j = start; j < end; j++){
+            if(arr[j].compareTo(arr[end]) <= 0){
+                swap(arr, ++i, j);
             }
         }
-        while(i < L){
-            arr[k++] = left[i++];
-        }
-        while(j < R){
-            arr[k++] = right[j++];
-        }
+        swap(arr, ++i, end);
+        sort1(arr, start, i-1 );
+        sort1(arr, i+1, end);
      }
-
 
 }

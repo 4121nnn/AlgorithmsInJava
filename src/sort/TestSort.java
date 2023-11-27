@@ -7,4 +7,11 @@ public class TestSort {
         }
         return true;
     }
+
+    public static<T extends Comparable<T>> long timeToSort(T[] arr, Sort doSort){
+        long startTime = System.nanoTime();
+        doSort.sort(arr);
+        return (System.nanoTime() - startTime) / 1000000;
+    }
+
 }

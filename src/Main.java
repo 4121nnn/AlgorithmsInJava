@@ -6,7 +6,7 @@ import sort.SortUtils.*;
 
 public class Main {
     public static void main(String[] args) {
-            MainSort.main(args);
+            //MainSort.main(args);
 
     }
 
